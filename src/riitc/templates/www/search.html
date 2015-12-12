@@ -1,0 +1,18 @@
+{% extends "www/base.html" %}
+
+
+{% block head %}
+	<link rel="stylesheet" href="{{ versioning('styles/index.css') }}">
+{% endblock %}
+
+{% block main %}
+	<form id="search" class="hide">
+	    <input id="" class="" type="text" value="{{ kw }}" placeholder="频道 文章" maxlength="30" name="kw" />
+	    <input class="search-submit" value="搜索" type="submit" />
+	</form>
+	<ul class="list-group" style="border: 0px;">
+	{% for item in result %}
+		<li class="list-group-item" style="border: 0px;"><a href="{{ item.url }}">{{ item }}</a></li>
+	{% endfor %}
+	<ul>
+{% endblock %}

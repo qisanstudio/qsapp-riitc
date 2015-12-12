@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% block title %}{% endblock %}上海对外贸易大学国际贸易经济研究所</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href="{{ versioning('fav.ico') }}" rel="shotcut icon">
+    <link rel="stylesheet" href="{{ versioning('styles/vendor.css') }}">
+    <link rel="stylesheet" href="{{ versioning('styles/main.css') }}">
+    <script src="{{ versioning('scripts/vendor.js') }}"></script>
+    <script src="{{ versioning('scripts/vendor/modernizr.js') }}"></script>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <!--[if lt IE 9]>
+        <script src="https://brokerage-static.s3.amazonaws.com/assets/html5shiv/html5shiv.js"></script>
+        <script src="https://brokerage-static.s3.amazonaws.com/assets/respond/respond.min.js"></script>
+        <script src="https://brokerage-static.s3.amazonaws.com/assets/robinhood/js/bind-polyfill.js"></script>
+    <![endif]-->
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+    <![endif]-->
+    {% block nav %}
+    <nav id="topnav" class="navbar navbar-default header" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('views.index') }}"></a>
+            </div>
+
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul id="navbar-inner" class="nav navbar-nav">
+                    <li class=""><a href="{{ url_for('views.index') }}"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+                    <li class=""><a href="mailto:public@suibe.com">EMAIL</a></li>
+                    <li class=""><a href="http://www.suibe.edu.cn/">上海对外经贸大学</a></li>
+                    <li class=""><a href="http://www.suibe.edu.cn/">ENGLISH</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <form class="navbar-form form-inline" action="{{ url_for('views.search', category='all') }}" role="search">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="search" name="kw" class="form-control" placeholder="">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mainnav">
+        <div class="container">
+            <a class="" href="{{ url_for('views.index') }}">
+                <img class="" alt="Brand" height="50" src="http://3.im.guokr.com/NfV1S8gim8aiOvt3RYBOyQ9n6PFD3tm-kY12DFe_476EAwAAcAAAAFBO.png">
+            </a>
+            <ul class="nav nav-pills pull-right">
+                {{ render_navi(1) }}
+            </ul>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block banner %}{% endblock %}
+
+    <div id="main" class="">
+        <div class="container">
+            <div class="row">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class="flashes">
+                    {% for message in messages %}
+                        <li class="alert alert-warning alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <strong>警告</strong> {{ message }}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                    {% endif %}
+                {% endwith %}
+                {% block full %}{% endblock %}
+            </div>
+
+            <div class="row">
+                <div class="main col-sm-4">
+                    {% block side %}{% endblock %}
+                </div>
+                <div class="side col-sm-8">
+                    {% block main %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block footer %}
+    <footer class="footer" style="background-color: #e0e0e0;">
+        <div class="row container">
+            <div class="col-sm-5">
+                <div class="media">
+                    <div class="pull-left">
+                        <a href="#">
+                            <img class="media-object" src="http://img.bimba.edu.cn/res/nsd/images/temp/pic-5.jpg" data-holder-rendered="true" style="width: 160px; height: 100px;">
+                        </a>
+                    </div>
+                    <div class="pull-left" style="margin-left: 40px;font-size: 18px;">
+                        <ul class="list-unstyled">
+                            <li><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="">联系我们</a></li>
+                            <li><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="">招聘</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src="http://img.bimba.edu.cn/res/nsd/images/qr-code.jpg"/>
+            </div>
+            <div class="col-sm-3">
+                <h4 style="backgroud-color: #428bca;padding:2px;">相关链接</h4>
+                <ul class="list-inline">
+                    <li><a>中国经济研究中心</a></li>
+                    <li><a>健康老龄与发展研究中心</a></li>
+                    <li><a>中国宏观经济研究中心</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div>上海对外经贸大学国际经济贸易研究所 版权所有 <a href="http://www.miibeian.gov.cn/" target="_blank"></a></div>
+    </footer>
+    {% endblock %}
+
+    {% block script %}
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-xxxxxxxx-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+        <script src="{{ versioning('scripts/plugins.js') }}"></script>
+        <script src="{{ versioning('scripts/main.js') }}"></script>
+        </script>
+
+    {% endblock %}
+</body>
+</html>

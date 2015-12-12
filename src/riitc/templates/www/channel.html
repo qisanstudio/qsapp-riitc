@@ -1,0 +1,69 @@
+{% extends "www/base.html" %}
+
+
+{% block head %}
+	<link rel="stylesheet" href="{{ versioning('styles/channel.css') }}">
+{% endblock %}
+
+{% block banner %}
+    <div id="breadcrumb">
+        <div class="row">
+			<div class="col-md-12">
+				<ol class="breadcrumb" style="margin: 0px auto;">
+					{% if channel.parent %}
+				    <li><a href="{{ url_for('views.channel', cid=channel.parent.id) }}">{{ channel.parent.name }}
+				    </a></li>
+				    {% endif %}
+					<li class="active">{{ channel.name }}</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block side %}
+<ul class="list-group">
+	{% if channel.parent %}
+		{% for c in channel.parent.channels %}
+	  	<li class="list-group-item"><a href="{{ url_for('views.channel', cid=c.id) }}">{{ c.name }}</a></li>
+	  	{% endfor %}
+	{% else %}
+		{% for c in channel.channels %}
+	  	<li class="list-group-item"><a href="{{ url_for('views.channel', cid=c.id) }}">{{ c.name }}</a></li>
+	  	{% endfor %}
+	{% endif %}
+</ul>
+{% endblock %}
+
+{% block main %}
+	<div class="panel panel-primary">
+	    <div class="panel-heading">
+	        <h3 class="panel-title">{{ channel.name }}</h3>
+	    </div>
+	    <div class="panel-body">
+	        <table class="table">
+	        <tbody>
+	            {% for article in channel.articles[(pager.page-1)*pager.per_page:pager.page*pager.per_page] %}
+	            <a href="{{ article.url }}" target="_blank">
+	            <tr>
+	                <td><a href="{{ article.url }}" target="_blank">
+						{% if article.title_language == 'cn' %}
+						    {{ article.title|truncate(40, True) }}
+						{% else %}
+						    {{ article.title|truncate(40, True) }}
+						{% endif %}
+					</a></td>
+	                <td>{{ article.date_published|strfdate }}</td>
+	            </tr>
+	            </a>
+	            {% endfor %}
+	        </tbody>
+	        </table>
+	    </div>
+	</div>
+
+	<div class="row">
+		{{ pager.links|safe }}
+	</div>
+
+{% endblock %}

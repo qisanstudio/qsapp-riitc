@@ -1,0 +1,158 @@
+{% extends "www/base.html" %}
+
+
+{% block head %}
+	<link rel="stylesheet" href="{{ versioning('styles/index.css') }}">
+{% endblock %}
+
+{% block full %}
+    {% if slides %}
+    <div class="banner">
+        <ul>
+            {% for slide in slides %}
+            <li style="width: 25%; background-image: url({{ slide.image }}); background-size: 100% 100%;">
+                <div class="inner">
+                    <h1>{{ slide.title }}</h1>
+                    <p>{{ slide.describe }}</p>
+                    {% if slide.link %}<a class="btn" href="{{ slide.link }}">了解详情</a>{% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+	{{ render_activity(59) }}
+	<div class="row">
+		<div class="col-md-4">
+			{{ render_news(60) }}
+		</div>
+		<div class="col-md-4">
+			{{ render_news(61) }}
+		</div>
+		<div class="col-md-4">
+			{{ render_news(62) }}
+		</div>
+	</div>
+
+	<div class="row">
+  		<div class="col-sm-6 col-md-3">
+    		<div class="thumbnail">
+    		    <div class="caption">
+        			<h4>CEO经济观察报告会</h4>
+      			</div>
+      			<img src="http://img.bimba.edu.cn/resources/picture/1/2015/06/09/20150609163030582.png" alt="...">
+      			<div class="caption">
+        			<h5>“中国经济观察”第42次研讨会：再解通缩</h5>
+        			<p>5月23日下午，北京大学国家发展研究院在致福轩召开“中国经济观察”第42次研讨会，主题就是...</p>
+      			</div>
+    		</div>
+  		</div>
+  		<div class="col-sm-6 col-md-3">
+    		<div class="thumbnail">
+    		    <div class="caption">
+        			<h4>朗润格政</h4>
+      			</div>
+      			<img src="http://img.bimba.edu.cn/resources/picture/1/2015/09/08/201509081270743.JPG" alt="...">
+      			<div class="caption">
+        			<h5>黄益平：朗润园如何做智库</h5>
+        			<p>朗润园的智库工作确实同时具备了“天时、地利、人和”，不过归根到底，还是因为朗润园里聚集了一...</p>
+      			</div>
+    		</div>
+  		</div>
+  		<div class="col-sm-6 col-md-3">
+    		<div class="thumbnail">
+    		    <div class="caption">
+        			<h4>朗润新结构</h4>
+      			</div>
+      			<img src="http://img.bimba.edu.cn/resources/picture/1/2015/06/24/20150624151527528.png" alt="...">
+      			<div class="caption">
+        			<h5>“转型经济学遇见新结构经济学”特刊出版</h5>
+        			<p>在《新结构经济学：反思经济发展与政策的理论框架》一书中，林毅夫教授概要阐述了中国和亚洲其他...</p>
+      			</div>
+    		</div>
+  		</div>
+  		<div class="col-sm-6 col-md-3">
+    		<div class="thumbnail">
+    		    <div class="caption">
+        			<h4>朗润视频</h4>
+      			</div>
+      			<img src="http://img.bimba.edu.cn/resources/picture/1/2015/11/09/20151109115347574.jpg" alt="...">
+      			<div class="caption">
+        			<h5>视频《凤凰财经》姚洋：开放二胎不能解决中国人口老龄化问题</h5>
+        			<p>中国正步入老龄化社会。但和日本和德国等其他老龄化社会不同，中国在收入还相对较低的时候就开始...</p>
+      			</div>
+    		</div>
+  		</div>
+	</div>
+	
+	<div class="row">
+  		<div class="col-md-1">
+    		<div class="thumbnail" style="padding: 0px; border: 0px;">
+      			<img src="http://img.bimba.edu.cn/resources/picture/1/2015/04/02/20150402101345195.png" alt="...">
+      			<div class="caption" style="padding: 0px;margin-top: 10px;">
+        			<p class="text-center">研究生/博士</p>
+      			</div>
+    		</div>
+  		</div>
+  		 <div class="col-md-1">
+    		<div class="thumbnail" style="padding: 0px; border: 0px;">
+      			<img src="http://img.bimba.edu.cn/resources/picture/1/2015/04/02/20150402101345118.png" alt="...">
+      			<div class="caption" style="padding: 0px;margin-top: 10px;">
+        			<p class="text-center">经济学双学位</p>
+      			</div>
+    		</div>
+  		</div>
+  		<div class="col-md-1">
+    		<div class="thumbnail" style="padding: 0px; border: 0px;">
+      			<img src="http://img.bimba.edu.cn/resources/picture/1/2015/04/02/20150402101345452.png" alt="...">
+      			<div class="caption" style="padding: 0px;margin-top: 10px;">
+        			<p class="text-center">MBA</p>
+      			</div>
+    		</div>
+  		</div>
+  		<div class="col-md-1">
+    		<div class="thumbnail" style="padding: 0px; border: 0px;">
+      			<img src="http://img.bimba.edu.cn/resources/picture/1/2015/04/02/20150402101345274.png" alt="...">
+      			<div class="caption" style="padding: 0px;margin-top: 10px;">
+        			<p class="text-center">EMBA</p>
+      			</div>
+    		</div>
+  		</div>
+
+
+		<div class="col-md-1"></div>
+		<div class="col-md-7">
+			<table class="table">
+			    <tbody>
+			        <tr>
+			        	<td style="border-top: 0px;" class="text-center"><img src="http://img.bimba.edu.cn/resources/picture/1/2015/04/02/2015040210134659.png" alt=""></td>
+			        	<td style="border-top: 0px;" class="text-center"><img src="http://img.bimba.edu.cn/resources/picture/1/2015/04/02/20150402101346768.png" alt=""></td>
+			        	<td style="border-top: 0px;" class="text-center"><img src="http://img.bimba.edu.cn/resources/picture/1/2015/04/02/2015040210152364.png" alt=""></td>
+			        	<td style="border-top: 0px;" class="text-center"><img src="http://img.bimba.edu.cn/resources/picture/1/2015/04/02/2015040210152747.png" alt=""></td>
+			        </tr>
+			        <tr>
+			        	<td style="border-top: 0px;"><p class="text-center">中国经济研究中心</p></td>
+			        	<td style="border-top: 0px;"><p class="text-center">中国经济研究中心</p></td>
+			        	<td style="border-top: 0px;"><p class="text-center">中国经济研究中心</p></td>
+			        	<td style="border-top: 0px;"><p class="text-center">中国经济研究中心</p></td>
+			        </tr>
+			    </tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
+
+{% block script %}
+{{ super() }}
+<script src="{{ versioning('scripts/vendor/unslider.js') }}"></script>
+<script type="text/javascript">
+	$(function() {
+    	$('.banner').unslider({
+				keys: true,
+				dots: true,
+				fluid: false
+			});
+    	});
+</script>
+{% endblock %}

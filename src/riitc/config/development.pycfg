@@ -1,0 +1,16 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+
+DEBUG = True
+SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://riitc:rrrr@localhost/riitc'
+
+#SERVER_NAME = 'www.riitc.com:18000'
+
+UWSGI_SOCKET = '0.0.0.0:17011'
+UWSGI_MODULE  = 'riitc:app'
+
+BCRYPT_LOG_ROUNDS = 10
+
+SECRET_KEY = '71f09bb707fd4adeb95e7472cc5f4362'
+
