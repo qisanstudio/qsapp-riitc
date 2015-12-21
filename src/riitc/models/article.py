@@ -2,10 +2,12 @@
 
 from __future__ import unicode_literals
 
+import re
 from flask import url_for
 from jinja2 import Markup
 from sqlalchemy import sql
 from studio.core.engines import db
+from sqlalchemy.sql.expression import func
 from sqlalchemy.ext.hybrid import hybrid_property
 
 
@@ -14,6 +16,9 @@ __all__ = [
     'ArticleModel',
     'ArticleContentModel',
 ]
+
+
+REGEX = r'^[a-zA-Z\b]+'
 
 
 class SlideModel(db.Model):
@@ -54,6 +59,17 @@ class ArticleModel(db.Model):
             uselist=False, cascade='all, delete-orphan')
 
     @property
+    def language(self):
+        return self.channel.language
+
+    @property
+    def title_language(self):
+        if re.match(REGEX, self.title.strip()):
+            return 'en'
+        else:
+            return 'cn'
+
+    @property
     def url(self):
         return url_for('views.article', aid=self.id)
 
@@ -71,6 +87,15 @@ class ArticleModel(db.Model):
     def html(self):
         return Markup(self.content)
 
+    @classmethod
+    def get_article_query(cls, cids=[], limit=10):
+        query = (cls.query
+                    .filter(cls.cid.in_(cids))
+                    .filter(cls.date_published <= func.now())
+                    .order_by(ArticleModel.date_published.desc())
+                    .limit(limit))
+        return query
+
     def __str__(self):
         return self.title
 
@@ -79,5 +104,5 @@ class ArticleContentModel(db.Model):
     __tablename__ = 'article_content'
 
     id = db.Column(db.Integer(), db.ForeignKey('article.id'),
-                        nullable=False, primary_key=True)
+                   nullable=False, primary_key=True)
     content = db.Column(db.UnicodeText(), nullable=False)

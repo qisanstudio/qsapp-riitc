@@ -3,14 +3,14 @@ from __future__ import unicode_literals
 
 from wtforms import validators
 from jinja2 import Markup
-from flask.ext.admin.contrib.sqla import ModelView
 from studio.core.engines import db
 from riitc.models import NaviModel, ChannelModel
 
+from .base import BaseView
 from .forms import CKTextAreaField
 
 
-class Navi(ModelView):
+class Navi(BaseView):
 
     column_labels = {'name': '名称', 'channels': '频道列表'}
     column_list = ['id', 'name', 'channels', 'date_created']
@@ -39,7 +39,7 @@ class Navi(ModelView):
         return form
 
 
-class Channel(ModelView):
+class Channel(BaseView):
 
     create_template = 'panel/channel_edit.html'
     edit_template = 'panel/channel_edit.html'

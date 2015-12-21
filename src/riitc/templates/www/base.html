@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{% block title %}{% endblock %}上海对外贸易大学国际贸易经济研究所</title>
+    <title>{% block title %}{% endblock %}上海国际贸易中心战略研究院</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link href="{{ versioning('fav.ico') }}" rel="shotcut icon">
@@ -43,8 +43,8 @@
                 <ul id="navbar-inner" class="nav navbar-nav">
                     <li class=""><a href="{{ url_for('views.index') }}"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
                     <li class=""><a href="mailto:public@suibe.com">EMAIL</a></li>
-                    <li class=""><a href="http://www.suibe.edu.cn/">上海对外经贸大学</a></li>
-                    <li class=""><a href="http://www.suibe.edu.cn/">ENGLISH</a></li>
+                    <li class=""><a target="_blank" href="http://www.suibe.edu.cn/">上海对外经贸大学</a></li>
+                    <li class=""><a target="_blank" href="{{ url_for('views.index_lang', language='en') }}">ENGLISH</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="">
@@ -67,10 +67,12 @@
     <div id="mainnav">
         <div class="container">
             <a class="" href="{{ url_for('views.index') }}">
-                <img class="" alt="Brand" height="50" src="http://3.im.guokr.com/NfV1S8gim8aiOvt3RYBOyQ9n6PFD3tm-kY12DFe_476EAwAAcAAAAFBO.png">
+                <img class="" alt="Brand" height="70" src="http://2.im.guokr.com/vWzkQKW80vtkzalHa56n6e6Q7X3WGjo8-m2H1T817r_bAQAAZAAAAEdJ.gif">
             </a>
             <ul class="nav nav-pills pull-right">
-                {{ render_navi(1) }}
+                {% block navitems %}
+                    {{ render_navi(language=language) }}
+                {% endblock %}
             </ul>
         </div>
     </div>
@@ -138,7 +140,7 @@
             </div>
         </div>
         <div class="copyright">
-            <div>上海对外经贸大学国际经济贸易研究所 版权所有 <a href="http://www.miibeian.gov.cn/" target="_blank"></a></div>
+            <div>上海国际贸易中心战略研究院 版权所有 <a href="http://www.miibeian.gov.cn/" target="_blank"></a></div>
     </footer>
     {% endblock %}
 

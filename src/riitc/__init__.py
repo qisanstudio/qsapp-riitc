@@ -10,14 +10,17 @@ app = StudioFlask(__name__)
 Babel(app=app, default_locale='zh')
 
 with app.app_context():
-    from riitc.contrib import helpers
-    app.jinja_env.globals.update(render_navi=helpers.render_navi,
-                                 render_activity=helpers.render_activity,
-                                 render_news=helpers.render_news)
+    from riitc.contrib import template_filter as tf
+    app.jinja_env.globals.update(render_navi=tf.render_navi,
+                                 render_activity=tf.render_activity,
+                                 render_news=tf.render_news)
     from riitc import views
     from riitc.panel import admin
     from riitc.blueprints import blueprint_www
+    from riitc.contrib.security import login_manager
     admin.init_app(app)
+    login_manager.init_app(app)
+    login_manager.login_view = "views.login"
     assert views
 
     app.register_blueprint(blueprint_www)

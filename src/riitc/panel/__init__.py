@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from .account import Account, Role
 from .channel import Navi, Channel
 from .article import Slide, Article
 from .staff import Level, Staff
@@ -11,6 +12,9 @@ from flask.ext.admin import Admin
 
 admin = Admin(name='后台管理', url='/admin')
 
+# 账户管理
+admin.add_view(Account(name='用户', category='账户管理', endpoint='account'))
+admin.add_view(Role(name='角色', category='账户管理', endpoint='role'))
 
 # 频道管理
 admin.add_view(Navi(name='导航栏', category='频道管理', endpoint='navi'))

@@ -3,14 +3,14 @@ from __future__ import unicode_literals
 
 from wtforms import validators
 from jinja2 import Markup
-from flask.ext.admin.contrib.sqla import ModelView
 from studio.core.engines import db
 
 from riitc.models import LevelModel, StaffModel
 # from .forms import CKTextAreaField
+from .base import BaseView
 
 
-class Level(ModelView):
+class Level(BaseView):
 
     column_labels = {'id': 'ID',
                      'title': '职位',
@@ -34,7 +34,7 @@ class Level(ModelView):
         return form
 
 
-class Staff(ModelView):
+class Staff(BaseView):
     column_labels = {'id': 'ID',
                      'name': '名字',
                      'avatar': '头像',

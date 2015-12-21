@@ -15,8 +15,11 @@ class ArticleView(views.MethodView):
 
     def get(self, aid):
         article = ArticleModel.query.get(aid)
-        return render_template('www/article.html', article=article)
+        return render_template('www/article.html',
+                               article=article,
+                               language=article.language)
 
 
-blueprint_www.add_url_rule('/article/<int:aid>/', view_func=ArticleView.as_view(b'article'),
+blueprint_www.add_url_rule('/article/<int:aid>/',
+                           view_func=ArticleView.as_view(b'article'),
                            endpoint='article', methods=['GET'])

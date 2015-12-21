@@ -3,14 +3,14 @@ from __future__ import unicode_literals
 
 from wtforms import validators
 from jinja2 import Markup
-from flask.ext.admin.contrib.sqla import ModelView
 from studio.core.engines import db
 
 from riitc.models import SlideModel, ArticleModel
+from .base import BaseView
 from .forms import CKTextAreaField
 
 
-class Article(ModelView):
+class Article(BaseView):
 
     create_template = 'panel/article_edit.html'
     edit_template = 'panel/article_edit.html'
@@ -43,7 +43,7 @@ class Article(ModelView):
         return form
 
 
-class Slide(ModelView):
+class Slide(BaseView):
     column_labels = {'id': 'ID',
                      'order': '排序',
                      'title': '标题',
