@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 import re
 from flask import request, views, redirect, url_for, render_template
 
-from riitc.contrib.security import requires_roles
 from studio.core.engines import db
 from riitc.blueprints import blueprint_www
 from riitc.models import (SlideModel, ChannelModel, ChannelSummaryModel,
@@ -16,7 +15,6 @@ class IndexView(views.MethodView):
         首页
     '''
 
-    @requires_roles('superadmin')
     def get(self):
         return redirect(url_for('views.index_lang', language='cn'))
 

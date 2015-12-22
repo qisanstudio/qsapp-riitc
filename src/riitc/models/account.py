@@ -55,7 +55,6 @@ class AccountModel(db.Model, UserMixin):
     def is_correct_password(self, plaintext):
         return check_password_hash(self._password, plaintext)
 
-    @property
     def is_active(self):
         return self.is_email_confirmed
 
