@@ -5,6 +5,8 @@ from wtforms import validators
 from jinja2 import Markup
 from studio.core.engines import db
 
+from riitc.contrib.fields import ImageUploadField
+from riitc.contrib.image import thumbnail
 from riitc.models import LevelModel, StaffModel
 # from .forms import CKTextAreaField
 from .base import BaseView
@@ -50,10 +52,16 @@ class Staff(BaseView):
 
     def _show_avatar(self, context, model, name):
         avatar = model.avatar.strip() if model.avatar else ''
-        return Markup('<img src=%s width=200 height=200 />' % avatar)
+        origin_url = thumbnail(avatar)
+        url = thumbnail(avatar, width=200, height=200)
+        return Markup('<a href="%s" target="_blank"><img src="%s" /></a>' % (origin_url, url))
 
     column_formatters = {
         'avatar': _show_avatar,
+    }
+
+    form_extra_fields = {
+        'avatar': ImageUploadField('上传头像')
     }
 
     def __init__(self, **kwargs):

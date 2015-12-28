@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from flask.ext.login import login_user, current_user, logout_user, login_required
+from flask.ext.login import login_user, logout_user, login_required
 from flask import views, render_template, url_for, redirect, abort, flash
 from studio.core.engines import db
 
@@ -31,7 +31,7 @@ class LoginView(views.MethodView):
                                    .first_or_404())
             if account.is_correct_password(form.password.data):
                 login_user(account)
-                return redirect(url_for(".index"))
+                return redirect(url_for("admin.index"))
             else:
                 flash('密码不正确')
         else:

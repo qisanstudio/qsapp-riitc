@@ -5,6 +5,7 @@ from .account import Account, Role
 from .channel import Navi, Channel
 from .article import Slide, Article
 from .staff import Level, Staff
+from .image import Image
 
 
 from flask.ext.admin import Admin
@@ -29,3 +30,7 @@ admin.add_view(Article(name='文章', category='文章管理', endpoint='article
 # 职工管理
 admin.add_view(Level(name='职称', category='师资队伍', endpoint='level'))
 admin.add_view(Staff(name='职员', category='师资队伍', endpoint='staff'))
+
+
+# 图片管理
+admin.add_view(Image(name='图片管理', category='图片管理', endpoint='image'))
